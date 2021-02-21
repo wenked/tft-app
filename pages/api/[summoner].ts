@@ -39,7 +39,15 @@ const summonerName = async (req: NextApiRequest, res: NextApiResponse) => {
     return  matchDetail.json()
   }))
 
- console.log(matchDetailsArray,'aqui')
+ 
+
+ const playerMatchDetail = matchDetailsArray.map((match:any) => {
+
+   return match.info.participants.filter(player => player.puuid === summonerResponse.puuid)
+ })
+
+ console.log(playerMatchDetail)
+ 
 
   res.setHeader('Cache-Control','s-maxage=10, stale-while-revalidate')
  
@@ -48,7 +56,8 @@ const summonerName = async (req: NextApiRequest, res: NextApiResponse) => {
     rankedData:rankedDataResponse,
     date: testDate.toUTCString(),
     matchListIds:matchListDataResponse,
-    matchDetailsArray })
+    matchDetailsArray,
+    playerMatchDetail })
     
 }
 
