@@ -4,6 +4,9 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 const summonerName = async (req: NextApiRequest, res: NextApiResponse) => {
 	const riotApiKey = process.env.RIOT_API_KEY;
 
+	const AMERICAS = ['br1', 'la1', 'la2', 'na1'];
+	const EUROPE = ['eun1', 'euw1', 'ru', 'tr1'];
+
 	const testDate = new Date();
 	let regionString = '';
 
@@ -22,9 +25,9 @@ const summonerName = async (req: NextApiRequest, res: NextApiResponse) => {
 	);
 	const rankedDataResponse = await fetchRankedData.json();
 
-	if (region === 'br1' || 'la1' || 'la2' || 'na1') {
+	if (AMERICAS.includes(region as string)) {
 		regionString = 'americas';
-	} else if (region === 'eun1' || 'euw1' || 'ru' || 'tr1') {
+	} else if (EUROPE.includes(region as string)) {
 		regionString = 'europe';
 	} else {
 		regionString = 'asia';

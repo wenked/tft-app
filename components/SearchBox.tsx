@@ -14,17 +14,14 @@ import React from 'react';
 import { useRouter } from 'next/router';
 
 const SearchBox: React.FC = () => {
-	//const [searchBoxText, setSearchBoxText] = React.useState('');
 	const [selectOption, setSelectOption] = React.useState('');
 	const [inputText, setInputText] = React.useState('');
-	//const [selectForm, setSelectForm] = React.useState('');
+
 	const router = useRouter();
 
 	const onSubmitHandler = (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
-		//setSearchBoxText(inputText);
-		//setSelectForm(selectOption);
-		//console.log(searchBoxText, selectOption);
+
 		router.push(`/summoner/${inputText}?region=${selectOption}`);
 	};
 
