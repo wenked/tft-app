@@ -6,6 +6,14 @@ interface MatchProps {
 	match: participantsType;
 }
 
+const convertString = (trait: String) => {
+	if (trait.includes('Set4_')) {
+		return trait.replace('Set4_', '').toLowerCase();
+	}
+
+	return trait.toLowerCase();
+};
+
 const Match: React.FC<MatchProps> = ({ match }) => {
 	return (
 		<Box p={4}>
@@ -16,6 +24,12 @@ const Match: React.FC<MatchProps> = ({ match }) => {
 				{match.playerMatchDetails[0].traits.map((traits) => {
 					return (
 						<Text>
+							<img
+								src={`https://rerollcdn.com/icons/${convertString(
+									traits.name
+								)}.png`}
+								alt='Logo'
+							/>
 							{traits.name} {traits.num_units}
 						</Text>
 					);
