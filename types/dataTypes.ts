@@ -30,16 +30,22 @@ interface UnitsType {
 	tier: Number;
 }
 
-interface participantsType {
-	gold_left: Number;
-	last_round: Number;
-	level: Number;
-	placement: Number;
-	players_eliminated: Number;
-	puuid: String;
-	time_eliminated: Number;
-	traits: TraitsType[];
-	units: UnitsType[];
+export interface participantsType {
+	game_datetime: Number;
+	game_length: Number;
+	playerMatchDetails: [
+		{
+			gold_left: Number;
+			last_round: Number;
+			level: Number;
+			placement: Number;
+			players_eliminated: Number;
+			puuid: String;
+			time_eliminated: Number;
+			traits: TraitsType[];
+			units: UnitsType[];
+		}
+	];
 }
 
 interface matchDetails {
@@ -74,4 +80,5 @@ export interface SummonerData {
 	matchListIds: String[];
 	matchDetailsArray: matchDetails[];
 	playerMatchDetail: participantsType[];
+	status: Number;
 }

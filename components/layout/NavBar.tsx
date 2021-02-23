@@ -23,17 +23,30 @@ const NavBar: React.FC = () => {
 					<DarkModeSwitch />
 					<Link>
 						<NextLink href='/'>
-							<Text display='block'>Home</Text>
+							<Text display='block' size='2xl' fontWeight='semibold'>
+								Home
+							</Text>
 						</NextLink>
 					</Link>
 					<Link>
 						<NextLink href='/'>
-							<Text display='block'>Teste1</Text>
+							<Text display='block' size='2xl' fontWeight='semibold'>
+								Leaderboards
+							</Text>
 						</NextLink>
 					</Link>
 					<Link>
 						<NextLink href='/'>
-							<Text display='block'>Teste2</Text>
+							<Text display='block' size='2xl' fontWeight='semibold'>
+								Loaded Dice
+							</Text>
+						</NextLink>
+					</Link>
+					<Link>
+						<NextLink href='/'>
+							<Text display='block' size='2xl' fontWeight='semibold'>
+								Champions
+							</Text>
 						</NextLink>
 					</Link>
 				</Stack>

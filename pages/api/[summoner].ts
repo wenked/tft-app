@@ -1,5 +1,6 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next';
+import axios from 'axios';
 
 const summonerName = async (req: NextApiRequest, res: NextApiResponse) => {
 	const riotApiKey = process.env.RIOT_API_KEY;
@@ -19,6 +20,20 @@ const summonerName = async (req: NextApiRequest, res: NextApiResponse) => {
 		`${riotApiUrl}/summoner/v1/summoners/by-name/${summoner}?api_key=${riotApiKey}`
 	);
 
+	console.log(fetchSummoner.status, 'aqs');
+
+	if (fetchSummoner.status === 404) {
+		return res.status(200).json({
+			summoner: {},
+			rankedData: {},
+			date: testDate.toUTCString(),
+			matchListIds: {},
+			matchDetailsArray: [],
+			playerMatchDetail: [],
+			status: fetchSummoner.status,
+		});
+	}
+
 	const summonerResponse = await fetchSummoner.json();
 	const fetchRankedData = await fetch(
 		`${riotApiUrl}/league/v1/entries/by-summoner/${summonerResponse.id}?api_key=${riotApiKey}`
@@ -36,6 +51,7 @@ const summonerName = async (req: NextApiRequest, res: NextApiResponse) => {
 	const fetchMatchListData = await fetch(
 		`https://${regionString}.api.riotgames.com/tft/match/v1/matches/by-puuid/${summonerResponse.puuid}/ids?count=3&api_key=${riotApiKey}`
 	);
+
 	const matchListDataResponse = await fetchMatchListData.json();
 
 	const matchDetailsArray = await Promise.all(
@@ -48,20 +64,25 @@ const summonerName = async (req: NextApiRequest, res: NextApiResponse) => {
 	);
 
 	const playerMatchDetail = matchDetailsArray.map((match: any) => {
-		return match.info.participants.filter(
-			(player) => player.puuid === summonerResponse.puuid
-		);
+		return {
+			game_datetime: match.info.game_datetime,
+			game_length: match.info.game_length,
+			playerMatchDetails: match.info.participants.filter(
+				(player) => player.puuid === summonerResponse.puuid
+			),
+		};
 	});
 
 	res.setHeader('Cache-Control', 's-maxage=10, stale-while-revalidate');
 
-	res.status(200).json({
+	return res.status(200).json({
 		summoner: summonerResponse,
 		rankedData: rankedDataResponse,
 		date: testDate.toUTCString(),
 		matchListIds: matchListDataResponse,
 		matchDetailsArray,
 		playerMatchDetail,
+		status: fetchSummoner.status,
 	});
 };
 

@@ -1,14 +1,11 @@
 import Head from 'next/head';
-import DarkModeSwitch from '../components/DarkModeSwitch';
 import { Flex, Heading, Text, Stack, Box } from '@chakra-ui/react';
-import SearchBox from '../components/SearchBox';
+import SearchBox from '../components/layout/SearchBox';
 import React from 'react';
-import NavBar from '../components/NavBar';
 
 const Home: React.FC = () => {
 	return (
 		<>
-			<NavBar />
 			<Flex align='center' justifyContent='center'>
 				<Head>
 					<title>TFT APP</title>

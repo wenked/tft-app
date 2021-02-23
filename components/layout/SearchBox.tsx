@@ -56,10 +56,14 @@ const SearchBox: React.FC = () => {
 							<option value='br1'>BR</option>
 							<option value='euw1'>EUW</option>
 							<option value='na1'>NA</option>
-							<option value='la1'>LA</option>
-							<option value='eun1'>EUN</option>
-							<option value='ru1'>RU</option>
+							<option value='la1'>LAN</option>
+							<option value='la2'>LAS</option>
+							<option value='eun1'>EUNE</option>
+							<option value='ru'>RU</option>
 							<option value='tr1'>TR</option>
+							<option value='oc1'>OCE</option>
+							<option value='jp1'>JP</option>
+							<option value='kr'>KR</option>
 						</Select>
 					</FormControl>
 					<Button mt={2} type='submit'>

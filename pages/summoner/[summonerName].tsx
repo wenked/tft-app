@@ -4,6 +4,8 @@ import { useRouter } from 'next/router';
 import axios from 'axios';
 import useSWR from 'swr';
 import { Box, Flex, Text } from '@chakra-ui/react';
+import RankedData from '../../components/dataComponents/RankedData';
+import MatchHistory from '../../components/dataComponents/MatchHistory';
 
 const fetcher = (url: string) => axios.get(url).then((res) => res.data);
 
@@ -13,25 +15,27 @@ const SummonerPage: React.FC = (
 	const router = useRouter();
 	const { summonerName, region } = router.query;
 
-	const { data, error, isValidating } = useSWR<SummonerData>(
+	const { data, isValidating } = useSWR<SummonerData>(
 		`/api/${summonerName}?region=${region}`,
 		fetcher,
 		{
 			initialData: props.data,
+			revalidateOnFocus: false,
 		}
 	);
 
+	console.log('aqui');
 	return !isValidating ? (
-		<Box textAlign='center' p={4}>
-			<Flex direction='column'>
-				<Text color='blue.600' fontSize='2xl'>
-					{data.summoner.name}
-				</Text>
-				<Text>Rank: {data.rankedData[0].tier}</Text>
-				<Text>Points: {data.rankedData[0].leaguePoints}</Text>
-				<Text color='blue.400'>Wins: {data.rankedData[0].wins}</Text>
-			</Flex>
-		</Box>
+		data.status === 404 ? (
+			<Text>RIP summoner</Text>
+		) : (
+			<Box>
+				<Flex flexDirection='column'>
+					<RankedData rankedData={data} />
+					<MatchHistory data={data} />
+				</Flex>
+			</Box>
+		)
 	) : (
 		<div>loading</div>
 	);
@@ -42,11 +46,11 @@ export default SummonerPage;
 export const getServerSideProps: GetServerSideProps = async (context) => {
 	const { summonerName, region } = context.query;
 
-	const res = await fetch(
+	const res = await axios.get(
 		`http://localhost:3000/api/${summonerName}?region=${region}`
 	);
-	const data: SummonerData = await res.json();
-
+	const data: SummonerData = await res.data;
+	console.log(data, 'aqui2');
 	return {
 		props: { data },
 	};
