@@ -47,7 +47,7 @@ export default SummonerPage;
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
 	const { summonerName, region } = context.query;
-
+	console.log(BASE_URL);
 	const res = await axios.get(
 		`${BASE_URL}/api/${summonerName}?region=${region}`
 	);
