@@ -18,9 +18,9 @@ const Match: React.FC<MatchProps> = ({ match }) => {
 			<Text>Placement: {match.playerMatchDetails[0].placement}</Text>
 			<Text>Date: {convertDate.toLocaleString('br-BR')}</Text>
 			<Text>
-				{match.playerMatchDetails[0].traits.map((traits) => {
+				{match.playerMatchDetails[0].traits.map((traits, i) => {
 					return (
-						<Flex display='inline-flex' p={2}>
+						<Flex display='inline-flex' p={2} key={i}>
 							<Text>
 								<Image
 									src={`https://rerollcdn.com/icons/${convertString(
@@ -36,9 +36,9 @@ const Match: React.FC<MatchProps> = ({ match }) => {
 					);
 				})}
 				<Box>
-					{match.playerMatchDetails[0].units.map((unit) => {
+					{match.playerMatchDetails[0].units.map((unit, i) => {
 						return (
-							<Box display='inline-block' p={2}>
+							<Box display='inline-block' p={2} key={i}>
 								{convertString('TFT4_', unit.character_id, 'TFT4b_') ===
 								'ChoGath' ? (
 									<Image

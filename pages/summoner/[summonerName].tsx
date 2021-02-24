@@ -9,6 +9,8 @@ import MatchHistory from '../../components/dataComponents/MatchHistory';
 
 const fetcher = (url: string) => axios.get(url).then((res) => res.data);
 
+const BASE_URL = process.env.BASE_URL;
+
 const SummonerPage: React.FC = (
 	props: InferGetServerSidePropsType<typeof getServerSideProps>
 ) => {
@@ -16,7 +18,7 @@ const SummonerPage: React.FC = (
 	const { summonerName, region } = router.query;
 
 	const { data, isValidating } = useSWR<SummonerData>(
-		`/api/${summonerName}?region=${region}`,
+		`${BASE_URL}/api/${summonerName}?region=${region}`,
 		fetcher,
 		{
 			initialData: props.data,
@@ -46,7 +48,9 @@ export default SummonerPage;
 export const getServerSideProps: GetServerSideProps = async (context) => {
 	const { summonerName, region } = context.query;
 
-	const res = await axios.get(`/api/${summonerName}?region=${region}`);
+	const res = await axios.get(
+		`${BASE_URL}/api/${summonerName}?region=${region}`
+	);
 	const data: SummonerData = await res.data;
 	console.log(data, 'aqui2');
 	return {
