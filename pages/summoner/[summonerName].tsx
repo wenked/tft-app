@@ -46,9 +46,7 @@ export default SummonerPage;
 export const getServerSideProps: GetServerSideProps = async (context) => {
 	const { summonerName, region } = context.query;
 
-	const res = await axios.get(
-		`http://localhost:3000/api/${summonerName}?region=${region}`
-	);
+	const res = await axios.get(`/api/${summonerName}?region=${region}`);
 	const data: SummonerData = await res.data;
 	console.log(data, 'aqui2');
 	return {
