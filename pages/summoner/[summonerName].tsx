@@ -52,7 +52,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 		`${BASE_URL}/api/${summonerName}?region=${region}`
 	);
 	const data: SummonerData = await res.data;
-	console.log(data, 'aqui2');
+
 	return {
 		props: { data },
 	};
