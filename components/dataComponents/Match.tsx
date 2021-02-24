@@ -7,6 +7,9 @@ interface MatchProps {
 	match: participantsType;
 }
 
+//https://res.cloudinary.com/dpq5tvqbd/image/upload/v1614128530/items/9006.png
+
+//Boss,BlackSmith,Daredevil,emperor
 const Match: React.FC<MatchProps> = ({ match }) => {
 	const convertDate = new Date((match.game_datetime as number) * 1000);
 
@@ -36,17 +39,46 @@ const Match: React.FC<MatchProps> = ({ match }) => {
 					{match.playerMatchDetails[0].units.map((unit) => {
 						return (
 							<Box display='inline-block' p={2}>
-								<Image
-									src={`https://rerollcdn.com/characters/Skin/4.5/${convertString(
-										'TFT4_',
-										unit.character_id,
-										'TFT4b_'
-									)}.png`}
-									alt='champ-image'
-									boxSize='50px'
-									border='1px solid'
-									borderColor={getBorderColor(unit.rarity)}
-								/>
+								{convertString('TFT4_', unit.character_id, 'TFT4b_') ===
+								'ChoGath' ? (
+									<Image
+										src='https://res.cloudinary.com/dpq5tvqbd/image/upload/v1614128457/champions/TFT4_ChoGath_yw3hag.png'
+										alt='champ-image'
+										boxSize='50px'
+										border='1px solid'
+										borderColor={getBorderColor(unit.rarity)}
+									/>
+								) : (
+									<Image
+										src={`https://rerollcdn.com/characters/Skin/4.5/${convertString(
+											'TFT4_',
+											unit.character_id,
+											'TFT4b_'
+										)}.png`}
+										alt='champ-image'
+										boxSize='50px'
+										border='1px solid'
+										borderColor={getBorderColor(unit.rarity)}
+									/>
+								)}
+
+								<Box display='inline-flex'>
+									{unit.items.map((item) =>
+										item >= 10 ? (
+											<Image
+												alt='item-img'
+												src={`https://res.cloudinary.com/dpq5tvqbd/image/upload/v1614128530/items/${item}.png`}
+												boxSize='15px'
+											/>
+										) : (
+											<Image
+												alt='item-img'
+												src={`https://res.cloudinary.com/dpq5tvqbd/image/upload/v1614128530/items/0${item}.png`}
+												boxSize='15px'
+											/>
+										)
+									)}
+								</Box>
 							</Box>
 						);
 					})}

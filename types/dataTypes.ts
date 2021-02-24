@@ -24,6 +24,7 @@ interface TraitsType {
 
 interface UnitsType {
 	character_id: String;
+	chosen?: String;
 	items: Number[];
 	name: String;
 	rarity: Number;

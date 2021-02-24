@@ -49,7 +49,7 @@ const summonerName = async (req: NextApiRequest, res: NextApiResponse) => {
 	}
 
 	const fetchMatchListData = await fetch(
-		`https://${regionString}.api.riotgames.com/tft/match/v1/matches/by-puuid/${summonerResponse.puuid}/ids?count=3&api_key=${riotApiKey}`
+		`https://${regionString}.api.riotgames.com/tft/match/v1/matches/by-puuid/${summonerResponse.puuid}/ids?count=10&api_key=${riotApiKey}`
 	);
 
 	const matchListDataResponse = await fetchMatchListData.json();
