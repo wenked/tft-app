@@ -1,39 +1,59 @@
 import { Box, Text, Flex, Image } from '@chakra-ui/react';
 import React from 'react';
 import { participantsType } from '../../types/dataTypes';
-import { convertString, getBorderColor } from '../../utils/utilityFunctions';
+import {
+	convertString,
+	getBorderColor,
+	getPlacementColor,
+	getTraitBackgroundColor,
+} from '../../utils/utilityFunctions';
 
 interface MatchProps {
 	match: participantsType;
 }
 
-//https://res.cloudinary.com/dpq5tvqbd/image/upload/v1614128530/items/9006.png
-
-//Boss,BlackSmith,Daredevil,emperor
 const Match: React.FC<MatchProps> = ({ match }) => {
 	const convertDate = new Date((match.game_datetime as number) * 1000);
 
 	return (
 		<Box p={4} m={4} border='1px solid white'>
-			<Text>Placement: {match.playerMatchDetails[0].placement}</Text>
+			<Text
+				fontSize='3xl'
+				color={getPlacementColor(match.playerMatchDetails[0].placement)}
+				fontWeight='semibold'>
+				#{match.playerMatchDetails[0].placement}
+			</Text>
 			<Text>Date: {convertDate.toLocaleString('br-BR')}</Text>
 			<Text>
 				{match.playerMatchDetails[0].traits.map((traits, i) => {
-					return (
-						<Flex display='inline-flex' p={2} key={i}>
-							<Text>
-								<Image
-									src={`https://rerollcdn.com/icons/${convertString(
-										'Set4_',
-										traits.name
-									)}.png`}
-									alt='Logo'
-									borderColor='pink.700'
-								/>
-								{traits.num_units}
-							</Text>
-						</Flex>
-					);
+					const legendaryTraits = [
+						'Set4_Daredevil',
+						'Boss',
+						'Set4_Blacksmith',
+						'Emperor',
+					];
+
+					if (!legendaryTraits.includes(traits.name as string)) {
+						return (
+							traits.tier_current > 0 && (
+								<Flex display='inline-flex' p={2} key={i}>
+									<Text>
+										<Image
+											src={`https://rerollcdn.com/icons/${convertString(
+												'Set4_',
+												traits.name
+											)}.png`}
+											alt='Logo'
+											backgroundColor={getTraitBackgroundColor(traits.style)}
+											borderRadius='md'
+											width='30px'
+										/>
+										{traits.num_units}
+									</Text>
+								</Flex>
+							)
+						);
+					}
 				})}
 				<Box>
 					{match.playerMatchDetails[0].units.map((unit, i) => {

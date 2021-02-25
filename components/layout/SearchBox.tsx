@@ -1,14 +1,10 @@
 import {
 	Box,
-	Textarea,
 	Button,
 	Select,
 	FormControl,
 	FormLabel,
-	FormErrorMessage,
-	FormHelperText,
 	Input,
-	Flex,
 } from '@chakra-ui/react';
 import React from 'react';
 import { useRouter } from 'next/router';
@@ -38,7 +34,7 @@ const SearchBox: React.FC = () => {
 	return (
 		<Box p={4}>
 			<form onSubmit={onSubmitHandler}>
-				<FormControl>
+				<FormControl isRequired>
 					<FormLabel>Summoner name</FormLabel>
 					<Input
 						onChange={onChangeHandler}
@@ -46,7 +42,7 @@ const SearchBox: React.FC = () => {
 						placeholder='Type summoner name'
 						value={inputText}
 					/>
-					<FormControl>
+					<FormControl isRequired>
 						<FormLabel mt={2}>Region</FormLabel>
 						<Select
 							placeholder='Region'

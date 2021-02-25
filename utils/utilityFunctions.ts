@@ -32,3 +32,31 @@ export const getBorderColor = (tier: Number) => {
 			return 'yellow.500';
 	}
 };
+
+export const getTraitBackgroundColor = (traitTier: Number) => {
+	switch (traitTier) {
+		case 1:
+			return 'yellow.700';
+		case 2:
+			return 'gray.500';
+		case 3:
+			return 'yellow.300';
+		case 4:
+			return 'teal.100';
+	}
+};
+
+export const getPlacementColor = (placement: Number) => {
+	switch (placement) {
+		case 1:
+			return 'green';
+		case 2:
+			return 'blue';
+		case 3:
+			return 'yellow';
+		case 4:
+			return 'yellow.500';
+		default:
+			return 'gray';
+	}
+};
