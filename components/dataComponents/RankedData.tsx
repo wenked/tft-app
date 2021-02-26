@@ -1,12 +1,18 @@
 import { Box, Flex, Text, Image } from '@chakra-ui/react';
 import React from 'react';
 import { SummonerData } from '../../types/dataTypes';
+import PlacementsBox from './PlacementsBox';
 
 interface rankedDataProps {
 	rankedData: SummonerData;
 }
 
 const RankedData: React.FC<rankedDataProps> = ({ rankedData }) => {
+	const placementsArray = rankedData.playerMatchDetail.map((match) => {
+		return match.playerMatchDetails[0].placement;
+	});
+	console.log(placementsArray);
+
 	return (
 		<Box textAlign='left' p={4}>
 			<Flex direction='column'>
@@ -34,6 +40,7 @@ const RankedData: React.FC<rankedDataProps> = ({ rankedData }) => {
 								Wins: {rankedData.rankedData[0].wins}
 							</Text>
 						</Flex>
+						<PlacementsBox placementsArray={placementsArray} />
 					</Box>
 				)}
 			</Flex>

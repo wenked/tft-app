@@ -3,9 +3,11 @@ import { SummonerData } from '../../types/dataTypes';
 import { useRouter } from 'next/router';
 import axios from 'axios';
 import useSWR from 'swr';
-import { Box, Flex, Text } from '@chakra-ui/react';
+import { Box, Flex, Text, Spinner } from '@chakra-ui/react';
 import RankedData from '../../components/dataComponents/RankedData';
 import MatchHistory from '../../components/dataComponents/MatchHistory';
+import LoadingContext from '../../context/loadingContext';
+import React from 'react';
 
 const fetcher = (url: string) => axios.get(url).then((res) => res.data);
 
@@ -26,7 +28,9 @@ const SummonerPage: React.FC = (
 		}
 	);
 
-	console.log('aqui');
+	const { setLoading } = React.useContext(LoadingContext);
+	setLoading(isValidating);
+
 	return !isValidating ? (
 		data.status === 404 ? (
 			<Text>RIP summoner</Text>
@@ -39,7 +43,7 @@ const SummonerPage: React.FC = (
 			</Box>
 		)
 	) : (
-		<div>loading</div>
+		<Spinner />
 	);
 };
 

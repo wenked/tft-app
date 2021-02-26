@@ -14,7 +14,7 @@ interface summonerRankedData {
 	hotStreak: Boolean;
 }
 
-interface TraitsType {
+export interface TraitsType {
 	name: String;
 	num_units: Number;
 	style: Number;

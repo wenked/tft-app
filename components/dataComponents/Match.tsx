@@ -7,6 +7,7 @@ import {
 	getPlacementColor,
 	getTraitBackgroundColor,
 } from '../../utils/utilityFunctions';
+import TraitsBox from './TraitsBox';
 
 interface MatchProps {
 	match: participantsType;
@@ -14,47 +15,27 @@ interface MatchProps {
 
 const Match: React.FC<MatchProps> = ({ match }) => {
 	const convertDate = new Date((match.game_datetime as number) * 1000);
+	const placementColor = getPlacementColor(
+		match.playerMatchDetails[0].placement
+	);
 
 	return (
-		<Box p={4} m={4} border='1px solid white'>
-			<Text
-				fontSize='3xl'
-				color={getPlacementColor(match.playerMatchDetails[0].placement)}
-				fontWeight='semibold'>
+		<Box
+			p={4}
+			m={4}
+			border='1px solid white'
+			borderLeftColor={placementColor}
+			borderLeftWidth='thick'>
+			<Text fontSize='3xl' color={placementColor} fontWeight='semibold'>
 				#{match.playerMatchDetails[0].placement}
 			</Text>
 			<Text>Date: {convertDate.toLocaleString('br-BR')}</Text>
 			<Text>
-				{match.playerMatchDetails[0].traits.map((traits, i) => {
-					const legendaryTraits = [
-						'Set4_Daredevil',
-						'Boss',
-						'Set4_Blacksmith',
-						'Emperor',
-					];
-
-					if (!legendaryTraits.includes(traits.name as string)) {
-						return (
-							traits.tier_current > 0 && (
-								<Flex display='inline-flex' p={2} key={i}>
-									<Text>
-										<Image
-											src={`https://rerollcdn.com/icons/${convertString(
-												'Set4_',
-												traits.name
-											)}.png`}
-											alt='Logo'
-											backgroundColor={getTraitBackgroundColor(traits.style)}
-											borderRadius='md'
-											width='30px'
-										/>
-										{traits.num_units}
-									</Text>
-								</Flex>
-							)
-						);
-					}
-				})}
+				<Box>
+					{match.playerMatchDetails[0].traits.map((traits, i) => {
+						return <TraitsBox key={i} traits={traits} />;
+					})}
+				</Box>
 				<Box>
 					{match.playerMatchDetails[0].units.map((unit, i) => {
 						return (

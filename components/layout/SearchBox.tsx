@@ -8,16 +8,20 @@ import {
 } from '@chakra-ui/react';
 import React from 'react';
 import { useRouter } from 'next/router';
+import LoadingContext from '../../context/loadingContext';
 
 const SearchBox: React.FC = () => {
 	const [selectOption, setSelectOption] = React.useState('');
 	const [inputText, setInputText] = React.useState('');
+	const { isLoading, setLoading } = React.useContext(LoadingContext);
+
+	console.log(isLoading);
 
 	const router = useRouter();
 
 	const onSubmitHandler = (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
-
+		setLoading(true);
 		router.push(`/summoner/${inputText}?region=${selectOption}`);
 	};
 
@@ -62,7 +66,7 @@ const SearchBox: React.FC = () => {
 							<option value='kr'>KR</option>
 						</Select>
 					</FormControl>
-					<Button mt={2} type='submit'>
+					<Button mt={2} type='submit' isLoading={isLoading}>
 						Search
 					</Button>
 				</FormControl>
