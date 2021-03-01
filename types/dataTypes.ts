@@ -14,6 +14,13 @@ interface summonerRankedData {
 	hotStreak: Boolean;
 }
 
+export interface championInterface {
+	name: string;
+	championId: string;
+	cost: number;
+	traits: string[];
+}
+
 export interface TraitsType {
 	name: string;
 	num_units: number;
