@@ -7,6 +7,7 @@ import {
 	getPlacementColor,
 	getTraitBackgroundColor,
 } from '../../utils/utilityFunctions';
+import ChampionsBox from './ChampionsBox';
 import TraitsBox from './TraitsBox';
 
 interface MatchProps {
@@ -29,60 +30,13 @@ const Match: React.FC<MatchProps> = ({ match }) => {
 			<Text fontSize='3xl' color={placementColor} fontWeight='semibold'>
 				#{match.playerMatchDetails[0].placement}
 			</Text>
-			<Text>Date: {convertDate.toLocaleString('br-BR')}</Text>
+			<Text color='gray.500'>Date: {convertDate.toLocaleString('br-BR')}</Text>
 			<Text>
 				<Box>
-					{match.playerMatchDetails[0].traits.map((traits, i) => {
-						return <TraitsBox key={i} traits={traits} />;
-					})}
+					<TraitsBox traits={match.playerMatchDetails[0].traits} />
 				</Box>
 				<Box>
-					{match.playerMatchDetails[0].units.map((unit, i) => {
-						return (
-							<Box display='inline-block' p={2} key={i}>
-								{convertString('TFT4_', unit.character_id, 'TFT4b_') ===
-								'ChoGath' ? (
-									<Image
-										src='https://res.cloudinary.com/dpq5tvqbd/image/upload/v1614128457/champions/TFT4_ChoGath_yw3hag.png'
-										alt='champ-image'
-										boxSize='50px'
-										border='1px solid'
-										borderColor={getBorderColor(unit.rarity)}
-									/>
-								) : (
-									<Image
-										src={`https://rerollcdn.com/characters/Skin/4.5/${convertString(
-											'TFT4_',
-											unit.character_id,
-											'TFT4b_'
-										)}.png`}
-										alt='champ-image'
-										boxSize='50px'
-										border='1px solid'
-										borderColor={getBorderColor(unit.rarity)}
-									/>
-								)}
-
-								<Box display='inline-flex'>
-									{unit.items.map((item) =>
-										item >= 10 ? (
-											<Image
-												alt='item-img'
-												src={`https://res.cloudinary.com/dpq5tvqbd/image/upload/v1614128530/items/${item}.png`}
-												boxSize='15px'
-											/>
-										) : (
-											<Image
-												alt='item-img'
-												src={`https://res.cloudinary.com/dpq5tvqbd/image/upload/v1614128530/items/0${item}.png`}
-												boxSize='15px'
-											/>
-										)
-									)}
-								</Box>
-							</Box>
-						);
-					})}
+					<ChampionsBox units={match.playerMatchDetails[0].units} />
 				</Box>
 			</Text>
 		</Box>

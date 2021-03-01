@@ -14,10 +14,8 @@ const SearchBox: React.FC = () => {
 	const [selectOption, setSelectOption] = React.useState('');
 	const [inputText, setInputText] = React.useState('');
 	const { isLoading, setLoading } = React.useContext(LoadingContext);
-
-	console.log(isLoading);
-
 	const router = useRouter();
+	const searchBoxSize = router.pathname !== '/' ? 'sm' : 'lg';
 
 	const onSubmitHandler = (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
@@ -36,13 +34,13 @@ const SearchBox: React.FC = () => {
 	};
 
 	return (
-		<Box p={4}>
+		<Box p={4} display='inline-flex'>
 			<form onSubmit={onSubmitHandler}>
 				<FormControl isRequired>
 					<FormLabel>Summoner name</FormLabel>
 					<Input
 						onChange={onChangeHandler}
-						size='lg'
+						size={searchBoxSize}
 						placeholder='Type summoner name'
 						value={inputText}
 					/>

@@ -1,13 +1,13 @@
 interface summonerRankedData {
-	leagueId: String;
-	queueType: String;
-	tier: String;
-	rank: String;
-	summonerId: String;
-	summonerName: String;
-	leaguePoints: Number;
-	wins: Number;
-	losses: Number;
+	leagueId: string;
+	queueType: string;
+	tier: string;
+	rank: string;
+	summonerId: string;
+	summonerName: string;
+	leaguePoints: number;
+	wins: number;
+	losses: number;
 	veteran: Boolean;
 	inactive: Boolean;
 	freshBlood: Boolean;
@@ -15,34 +15,34 @@ interface summonerRankedData {
 }
 
 export interface TraitsType {
-	name: String;
-	num_units: Number;
-	style: Number;
-	tier_current: Number;
-	tier_total: Number;
+	name: string;
+	num_units: number;
+	style: number;
+	tier_current: number;
+	tier_total: number;
 }
 
-interface UnitsType {
-	character_id: String;
-	chosen?: String;
-	items: Number[];
-	name: String;
-	rarity: Number;
-	tier: Number;
+export interface UnitsType {
+	character_id: string;
+	chosen?: string;
+	items: number[];
+	name: string;
+	rarity: number;
+	tier: number;
 }
 
 export interface participantsType {
-	game_datetime: Number;
-	game_length: Number;
+	game_datetime: number;
+	game_length: number;
 	playerMatchDetails: [
 		{
-			gold_left: Number;
-			last_round: Number;
-			level: Number;
-			placement: Number;
-			players_eliminated: Number;
-			puuid: String;
-			time_eliminated: Number;
+			gold_left: number;
+			last_round: number;
+			level: number;
+			placement: number;
+			players_eliminated: number;
+			puuid: string;
+			time_eliminated: number;
 			traits: TraitsType[];
 			units: UnitsType[];
 		}
@@ -51,35 +51,35 @@ export interface participantsType {
 
 interface matchDetails {
 	metadata: {
-		data_version: String;
-		match_id: String;
-		participants: String[];
+		data_version: string;
+		match_id: string;
+		participants: string[];
 		info: {
 			game_datetime: number;
 			game_length: number;
-			game_version: String;
+			game_version: string;
 			participants: participantsType[];
-			queue_id: Number;
-			tft_mode: String;
-			tft_set_number: Number;
+			queue_id: number;
+			tft_mode: string;
+			tft_set_number: number;
 		};
 	};
 }
 
 export interface SummonerData {
 	summoner: {
-		id: String;
-		accountId: String;
-		puuid: String;
-		name: String;
-		profileIconId: Number;
-		revisionDate: Number;
+		id: string;
+		accountId: string;
+		puuid: string;
+		name: string;
+		profileIconId: number;
+		revisionDate: number;
 		summonerLevel: 1;
 	};
 	rankedData: summonerRankedData[];
 	date: Date;
-	matchListIds: String[];
+	matchListIds: string[];
 	matchDetailsArray: matchDetails[];
 	playerMatchDetail: participantsType[];
-	status: Number;
+	status: number;
 }

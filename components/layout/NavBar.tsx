@@ -43,7 +43,7 @@ const NavBar: React.FC = () => {
 						</NextLink>
 					</Link>
 					<Link>
-						<NextLink href='/'>
+						<NextLink href='/champions'>
 							<Text display='block' size='2xl' fontWeight='semibold'>
 								Champions
 							</Text>
