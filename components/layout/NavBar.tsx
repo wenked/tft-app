@@ -23,28 +23,44 @@ const NavBar: React.FC = () => {
 					<DarkModeSwitch />
 					<Link>
 						<NextLink href='/'>
-							<Text display='block' size='2xl' fontWeight='semibold'>
+							<Text
+								display='block'
+								size='2xl'
+								fontWeight='semibold'
+								_hover={{ fontSize: '3xl' }}>
 								Home
 							</Text>
 						</NextLink>
 					</Link>
 					<Link>
 						<NextLink href='/'>
-							<Text display='block' size='2xl' fontWeight='semibold'>
+							<Text
+								display='block'
+								size='2xl'
+								fontWeight='semibold'
+								_hover={{ fontSize: '3xl' }}>
 								Leaderboards
 							</Text>
 						</NextLink>
 					</Link>
 					<Link>
 						<NextLink href='/'>
-							<Text display='block' size='2xl' fontWeight='semibold'>
+							<Text
+								display='block'
+								size='2xl'
+								fontWeight='semibold'
+								_hover={{ fontSize: '3xl' }}>
 								Loaded Dice
 							</Text>
 						</NextLink>
 					</Link>
 					<Link>
-						<NextLink href='/champions'>
-							<Text display='block' size='2xl' fontWeight='semibold'>
+						<NextLink href='/champions/Aatrox'>
+							<Text
+								display='block'
+								size='2xl'
+								fontWeight='semibold'
+								_hover={{ fontSize: '3xl' }}>
 								Champions
 							</Text>
 						</NextLink>
