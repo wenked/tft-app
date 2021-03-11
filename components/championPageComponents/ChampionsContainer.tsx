@@ -55,7 +55,11 @@ const ChampionsContainer: React.FC<ChampionsContainerProps> = ({
 								borderColor={getBorderColor(champ.cost - 1)}
 							/>
 						)}
-						<Text fontSize='smaller'>{champ.name}</Text>
+						<Text
+							fontSize='smaller'
+							display={{ base: 'none', lg: 'flex', md: 'flex' }}>
+							{champ.name}
+						</Text>
 					</Box>
 				);
 			})}
