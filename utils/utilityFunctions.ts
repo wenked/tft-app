@@ -18,6 +18,21 @@ export const convertString = (
 	}
 };
 
+export const convertNumber = (num: Number) => {
+	return `${(Number(num) * 100).toFixed(1)}%`;
+};
+
+export const getColor = (odd: Number) => {
+	if (odd <= 0.05) {
+		return 'red.500';
+	}
+	if (odd > 0.05 && odd <= 0.1) {
+		return 'yellow.500';
+	}
+
+	return 'green.500';
+};
+
 export const getBorderColor = (tier: Number) => {
 	switch (tier) {
 		case 0:

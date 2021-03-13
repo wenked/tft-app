@@ -44,7 +44,7 @@ const NavBar: React.FC = () => {
 						</NextLink>
 					</Link>
 					<Link>
-						<NextLink href='/'>
+						<NextLink href='/loadeddice'>
 							<Text
 								display='block'
 								size='2xl'
