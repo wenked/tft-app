@@ -2401,6 +2401,11 @@ rc@^1.2.7:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
+react-autocomplete-hint@^1.2.3:
+  version "1.2.3"
+  resolved "https://registry.yarnpkg.com/react-autocomplete-hint/-/react-autocomplete-hint-1.2.3.tgz#2042b0cb9fd77a0efe760a8cc94972f285b6b19e"
+  integrity sha512-zKUsTdH/RIUcrnGp1qruuxqSm1Av+ohWRs1wyZOBbRcaNpKlGVZ93qEhENScEsJ9IqCN8tV0LTRsdRHRrZh5oA==
+
 react-clientside-effect@^1.2.2:
   version "1.2.5"
   resolved "https://registry.yarnpkg.com/react-clientside-effect/-/react-clientside-effect-1.2.5.tgz#e2c4dc3c9ee109f642fac4f5b6e9bf5bcd2219a3"

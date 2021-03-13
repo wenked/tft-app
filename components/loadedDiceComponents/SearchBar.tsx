@@ -7,6 +7,8 @@ import {
 	FormLabel,
 	Input,
 } from '@chakra-ui/react';
+import { champions } from '../../utils/champions';
+import { Hint } from 'react-autocomplete-hint';
 import { getOddsOfDesiredChamps, loadedDiceOdds } from '../../utils/getOdds';
 
 interface searchBarProps {
@@ -14,7 +16,8 @@ interface searchBarProps {
 }
 const SearchBar: React.FC<searchBarProps> = ({ setOdds }) => {
 	const [searchTerm, setSearchTerm] = React.useState('');
-	//const [odds, setOdds] = React.useState<loadedDiceOdds[]>();
+
+	const championOptionsName = champions.map((champ) => champ.name) as string[];
 
 	const onSubmitHandler = (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
@@ -33,7 +36,13 @@ const SearchBar: React.FC<searchBarProps> = ({ setOdds }) => {
 				<FormControl isRequired>
 					<FormLabel>Champion</FormLabel>
 					<Box>
-						<Input size='lg' value={searchTerm} onChange={onChangeHandler} />
+						<Hint options={championOptionsName} allowTabFill>
+							<input
+								style={{ color: '#140101' }}
+								value={searchTerm}
+								onChange={onChangeHandler}
+							/>
+						</Hint>
 					</Box>
 					<Box>
 						<Button mt={2} type='submit'>
