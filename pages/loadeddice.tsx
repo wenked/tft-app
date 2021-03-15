@@ -15,7 +15,12 @@ import {
 } from '@chakra-ui/react';
 import SearchBar from '../components/loadedDiceComponents/SearchBar';
 import { getOddsOfDesiredChamps, loadedDiceOdds } from '../utils/getOdds';
-import { convertNumber, getColor } from '../utils/utilityFunctions';
+import {
+	convertNumber,
+	getBorderColor,
+	getColor,
+	getCost,
+} from '../utils/utilityFunctions';
 
 const Loadeddice: React.FC = () => {
 	const [odds, setOdds] = React.useState<loadedDiceOdds[]>();
@@ -60,6 +65,10 @@ const Loadeddice: React.FC = () => {
 												)}.png`}
 												alt='champion icon'
 												w='50px'
+												border='1px solid'
+												borderColor={getBorderColor(
+													Number(getCost(champ.champion)) - 1
+												)}
 											/>
 										</Button>
 										<Text m={1} fontWeight='semibold'>

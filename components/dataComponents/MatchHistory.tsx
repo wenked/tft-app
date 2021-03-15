@@ -1,4 +1,4 @@
-import { Box, Flex, Text } from '@chakra-ui/react';
+import { Box } from '@chakra-ui/react';
 import React from 'react';
 import { SummonerData } from '../../types/dataTypes';
 import Match from './Match';
@@ -9,9 +9,9 @@ interface MatchHistoryProps {
 
 const MatchHistory: React.FC<MatchHistoryProps> = ({ data }) => {
 	return (
-		<Box>
-			{data.playerMatchDetail.map((match) => (
-				<Match match={match} />
+		<Box width='60%'>
+			{data.playerMatchDetail.map((match, i) => (
+				<Match match={match} key={i} />
 			))}
 		</Box>
 	);

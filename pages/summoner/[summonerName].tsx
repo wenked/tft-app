@@ -3,7 +3,7 @@ import { SummonerData } from '../../types/dataTypes';
 import { useRouter } from 'next/router';
 import axios from 'axios';
 import useSWR from 'swr';
-import { Box, Flex, Text, Spinner } from '@chakra-ui/react';
+import { Box, Text, Spinner } from '@chakra-ui/react';
 import RankedData from '../../components/dataComponents/RankedData';
 import MatchHistory from '../../components/dataComponents/MatchHistory';
 import LoadingContext from '../../context/loadingContext';
@@ -35,11 +35,13 @@ const SummonerPage: React.FC = (
 		data.status === 404 ? (
 			<Text>RIP summoner</Text>
 		) : (
-			<Box>
-				<Flex flexDirection='column'>
-					<RankedData rankedData={data} />
-					<MatchHistory data={data} />
-				</Flex>
+			<Box
+				display='flex'
+				alignItems='center'
+				justifyContent='center'
+				flexDirection='column'>
+				<RankedData rankedData={data} />
+				<MatchHistory data={data} />
 			</Box>
 		)
 	) : (

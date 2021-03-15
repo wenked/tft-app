@@ -1,3 +1,5 @@
+import { champions } from './champions';
+
 export const convertString = (
 	replacer: String,
 	trait: String,
@@ -22,6 +24,11 @@ export const convertNumber = (num: Number) => {
 	return `${(Number(num) * 100).toFixed(1)}%`;
 };
 
+export const capitalize = (s: string) => {
+	if (typeof s !== 'string') return '';
+	return s.toLowerCase().charAt(0).toUpperCase() + s.slice(1);
+};
+
 export const getColor = (odd: Number) => {
 	if (odd <= 0.05) {
 		return 'red.500';
@@ -31,6 +38,10 @@ export const getColor = (odd: Number) => {
 	}
 
 	return 'green.500';
+};
+
+export const getCost = (championName: String) => {
+	return champions.filter((champ) => championName === champ.name)[0].cost;
 };
 
 export const getBorderColor = (tier: Number) => {

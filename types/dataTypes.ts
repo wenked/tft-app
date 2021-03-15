@@ -1,4 +1,4 @@
-interface summonerRankedData {
+export interface summonerRankedData {
 	leagueId: string;
 	queueType: string;
 	tier: string;
@@ -12,6 +12,14 @@ interface summonerRankedData {
 	inactive: Boolean;
 	freshBlood: Boolean;
 	hotStreak: Boolean;
+}
+
+export interface leaderboardType {
+	tier: string;
+	leagueId: string;
+	queue: string;
+	name: string;
+	entries: summonerRankedData[];
 }
 
 export interface championInterface {

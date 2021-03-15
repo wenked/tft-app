@@ -15,8 +15,13 @@ const RankedData: React.FC<rankedDataProps> = ({ rankedData }) => {
 	console.log(placementsArray);
 
 	return (
-		<Box textAlign='left' m={4}>
-			<Flex direction='column'>
+		<Box
+			textAlign='left'
+			display='flex'
+			border='1px solid white'
+			p={6}
+			width='58%'>
+			<Flex direction='column' justifyContent='center'>
 				<Text color='blue.900' fontSize='3xl' fontWeight='bold' marginLeft={4}>
 					{rankedData.summoner.name}
 				</Text>

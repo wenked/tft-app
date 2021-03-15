@@ -10,6 +10,7 @@ import {
 import { champions } from '../../utils/champions';
 import { Hint } from 'react-autocomplete-hint';
 import { getOddsOfDesiredChamps, loadedDiceOdds } from '../../utils/getOdds';
+import { capitalize } from '../../utils/utilityFunctions';
 
 interface searchBarProps {
 	setOdds: React.Dispatch<React.SetStateAction<loadedDiceOdds[]>>;
@@ -22,7 +23,7 @@ const SearchBar: React.FC<searchBarProps> = ({ setOdds }) => {
 	const onSubmitHandler = (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
 		if (searchTerm !== null) {
-			setOdds(getOddsOfDesiredChamps(searchTerm));
+			setOdds(getOddsOfDesiredChamps(capitalize(searchTerm)));
 		}
 	};
 
