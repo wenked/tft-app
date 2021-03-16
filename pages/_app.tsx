@@ -5,6 +5,7 @@ import React from 'react';
 import NavBar from '../components/layout/NavBar';
 import LoadingContext from '../context/loadingContext';
 import Footer from '../components/layout/Footer';
+import '../styles/globals.css';
 
 function MyApp({ Component, pageProps }: AppProps) {
 	const [isLoading, setLoading] = React.useState<boolean>(false);
@@ -12,7 +13,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 	return (
 		<ChakraProvider>
 			<LoadingContext.Provider value={{ isLoading, setLoading }}>
-				<Box display='flex' flexDirection='column' minHeight='100vh'>
+				<Box display='flex' flexDirection='column'>
 					<Box flex='1'>
 						<NavBar />
 						<Component {...pageProps} />

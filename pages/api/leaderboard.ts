@@ -19,9 +19,11 @@ const leaderBoard = async (req: NextApiRequest, res: NextApiResponse) => {
 		const fetchLeaderboard = await axios.get(
 			`${riotApiUrl}?api_key=${riotApiKey}`
 		);
+		res.setHeader('Cache-Control', 's-maxage=10, stale-while-revalidate');
 
 		return res.status(200).json({
-			leaderBoard: fetchLeaderboard.data.entries.sort(
+			...fetchLeaderboard.data,
+			entries: fetchLeaderboard.data.entries.sort(
 				(a, b) => b.leaguePoints - a.leaguePoints
 			),
 		});

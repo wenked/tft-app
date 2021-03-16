@@ -2,8 +2,11 @@ import { Flex, Box, Stack, Text, Link } from '@chakra-ui/react';
 import React from 'react';
 import NextLink from 'next/link';
 import DarkModeSwitch from './DarkModeSwitch';
+import { useRouter } from 'next/router';
+import NavBarSearchBox from './NavBarSearchBox';
 
 const NavBar: React.FC = () => {
+	const router = useRouter();
 	return (
 		<Flex
 			as='nav'
@@ -13,7 +16,7 @@ const NavBar: React.FC = () => {
 			w='100%'
 			mb={8}
 			p={4}>
-			<Box display='block' flexBasis={{ base: '100%', md: 'auto' }}>
+			<Box display='inline-block' flexBasis={{ base: '100%', md: 'auto' }}>
 				<Stack
 					spacing={8}
 					align='center'
@@ -67,6 +70,7 @@ const NavBar: React.FC = () => {
 					</Link>
 				</Stack>
 			</Box>
+			{router.pathname !== '/' && <NavBarSearchBox />}
 		</Flex>
 	);
 };

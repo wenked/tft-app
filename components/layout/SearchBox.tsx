@@ -9,6 +9,7 @@ import {
 import React from 'react';
 import { useRouter } from 'next/router';
 import LoadingContext from '../../context/loadingContext';
+import NavBarSearchBox from './NavBarSearchBox';
 
 const SearchBox: React.FC = () => {
 	const [selectOption, setSelectOption] = React.useState('');
@@ -33,7 +34,7 @@ const SearchBox: React.FC = () => {
 		setSelectOption(event.target.value as string);
 	};
 
-	return (
+	return router.pathname === '/' ? (
 		<Box p={4} display='inline-flex'>
 			<form onSubmit={onSubmitHandler}>
 				<FormControl isRequired>
@@ -70,6 +71,8 @@ const SearchBox: React.FC = () => {
 				</FormControl>
 			</form>
 		</Box>
+	) : (
+		<></>
 	);
 };
 

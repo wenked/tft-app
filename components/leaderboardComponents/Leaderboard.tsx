@@ -1,41 +1,22 @@
 import React from 'react';
 import useSWR from 'swr';
-import { leaderboardType, summonerRankedData } from '../../types/dataTypes';
+import { leaderboardType } from '../../types/dataTypes';
 import axios from 'axios';
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
-import { useRouter } from 'next/router';
-import {
-	Text,
-	Table,
-	Thead,
-	Tbody,
-	Tfoot,
-	Tr,
-	Th,
-	Td,
-	TableCaption,
-	Box,
-} from '@chakra-ui/react';
+
+import { Table, Thead, Tbody, Tr, Th, Td, Box } from '@chakra-ui/react';
 import RegionButtons from './RegionButtons';
 
 const BASE_URL = process.env.BASE_URL;
 const fetcher = (url: string) => axios.get(url).then((res) => res.data);
 
-interface summonerData {
-	leaderBoard: summonerRankedData[];
-}
-
 const Leaderboard: React.FC = (
 	props: InferGetServerSidePropsType<typeof getServerSideProps>
 ) => {
-	console.log(BASE_URL);
 	const [selectedRegion, setSelectedRegion] = React.useState('br1');
-	const router = useRouter();
-	const { region } = router.query;
-	const { data, isValidating } = useSWR<summonerData>(
-		`/api/leaderboard?region=${
-			selectedRegion === undefined ? 'br1' : selectedRegion
-		}`,
+
+	const { data, isValidating } = useSWR<leaderboardType>(
+		`/api/leaderboard?region=${selectedRegion}`,
 		fetcher,
 		{
 			initialData: props.data,
@@ -58,12 +39,12 @@ const Leaderboard: React.FC = (
 						</Tr>
 					</Thead>
 					<Tbody>
-						{data?.leaderBoard.map((summoner, i) => {
+						{data?.entries.map((summoner, i) => {
 							return (
 								<Tr key={i}>
 									<Td>{i + 1}.</Td>
 									<Td>{summoner.summonerName}</Td>
-									<Td>{summoner.tier}</Td>
+									<Td>{data.tier}</Td>
 									<Td>{summoner.leaguePoints}</Td>
 									<Td>{summoner.wins}</Td>
 								</Tr>

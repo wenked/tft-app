@@ -6,12 +6,12 @@ import React from 'react';
 const Home: React.FC = () => {
 	return (
 		<>
-			<Flex align='center' justifyContent='center'>
+			<Flex align='center' alignItems='center' justifyContent='center'>
 				<Head>
 					<title>TFT APP</title>
 				</Head>
 
-				<Box width='full' maxWidth='500px' px={4}>
+				<Box display='flex' justifyContent='center'>
 					<Flex flexDirection='column'>
 						<Heading as='h1' fontSize='2xl' textAlign='center'>
 							TFT-APP
