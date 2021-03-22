@@ -1,5 +1,6 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next';
+import axios from 'axios';
 
 const summonerName = async (req: NextApiRequest, res: NextApiResponse) => {
 	const riotApiKey = process.env.RIOT_API_KEY;
@@ -15,11 +16,11 @@ const summonerName = async (req: NextApiRequest, res: NextApiResponse) => {
 	} = req;
 	const riotApiUrl = `https://${region}.api.riotgames.com/tft`;
 
-	const fetchSummoner = await fetch(
+	const fetchSummoner = await axios.get(
 		`${riotApiUrl}/summoner/v1/summoners/by-name/${summoner}?api_key=${riotApiKey}`
 	);
 
-	console.log(fetchSummoner.status, 'aqs');
+	console.log(fetchSummoner.data, 'aqui');
 
 	if (fetchSummoner.status === 404) {
 		return res.status(200).json({
@@ -33,12 +34,13 @@ const summonerName = async (req: NextApiRequest, res: NextApiResponse) => {
 		});
 	}
 
-	const summonerResponse = await fetchSummoner.json();
-	const fetchRankedData = await fetch(
+	const summonerResponse = await fetchSummoner.data;
+	const fetchRankedData = await axios.get(
 		`${riotApiUrl}/league/v1/entries/by-summoner/${summonerResponse.id}?api_key=${riotApiKey}`
 	);
-	const rankedDataResponse = await fetchRankedData.json();
 
+	const rankedDataResponse = fetchRankedData.data;
+	console.log(rankedDataResponse, 'aqui2');
 	if (AMERICAS.includes(region as string)) {
 		regionString = 'americas';
 	} else if (EUROPE.includes(region as string)) {
@@ -47,18 +49,18 @@ const summonerName = async (req: NextApiRequest, res: NextApiResponse) => {
 		regionString = 'asia';
 	}
 
-	const fetchMatchListData = await fetch(
+	const fetchMatchListData = await axios.get(
 		`https://${regionString}.api.riotgames.com/tft/match/v1/matches/by-puuid/${summonerResponse.puuid}/ids?count=10&api_key=${riotApiKey}`
 	);
 
-	const matchListDataResponse = await fetchMatchListData.json();
-
+	const matchListDataResponse = fetchMatchListData.data;
+	console.log(matchListDataResponse, 'aqui3');
 	const matchDetailsArray = await Promise.all(
 		matchListDataResponse.map(async (matchId: String) => {
-			const matchDetail = await fetch(
+			const matchDetail = await axios.get(
 				`https://${regionString}.api.riotgames.com/tft/match/v1/matches/${matchId}?api_key=${riotApiKey}`
 			);
-			return matchDetail.json();
+			return matchDetail.data;
 		})
 	);
 
@@ -73,7 +75,7 @@ const summonerName = async (req: NextApiRequest, res: NextApiResponse) => {
 	});
 
 	res.setHeader('Cache-Control', 's-maxage=10, stale-while-revalidate');
-
+	console.log('aquiiiiiiiiiiiiiiiii');
 	return res.status(200).json({
 		summoner: summonerResponse,
 		rankedData: rankedDataResponse,

@@ -1,5 +1,17 @@
 import { champions } from './champions';
 
+export const rankColor = {
+	IRON: 'gray.700',
+	BRONZE: 'yellow.900',
+	SILVER: 'gray.500',
+	GOLD: 'yellow.400',
+	PLATINUM: 'green.400',
+	DIAMOND: 'blue.500',
+	MASTER: 'pink.800',
+	GRANDMASTER: 'red.400',
+	CHALLENGER: 'red.500',
+};
+
 export const convertString = (
 	replacer: String,
 	trait: String,
