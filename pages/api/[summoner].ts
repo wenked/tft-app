@@ -75,7 +75,7 @@ const summonerName = async (req: NextApiRequest, res: NextApiResponse) => {
 	});
 
 	res.setHeader('Cache-Control', 's-maxage=10, stale-while-revalidate');
-	console.log('aquiiiiiiiiiiiiiiiii');
+
 	return res.status(200).json({
 		summoner: summonerResponse,
 		rankedData: rankedDataResponse,

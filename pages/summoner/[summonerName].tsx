@@ -20,7 +20,7 @@ const SummonerPage: React.FC = (
 	const { summonerName, region } = router.query;
 
 	const { data, isValidating, error } = useSWR<SummonerData>(
-		`${BASE_URL}/api/${summonerName}?region=${region}`,
+		`${BASE_URL}api/${summonerName}?region=${region}`,
 		fetcher,
 		{
 			initialData: props.data,
