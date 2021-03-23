@@ -23,7 +23,7 @@ const PlacementsBox: React.FC<placementsBoxProps> = ({ placementsArray }) => {
 				{placementsArray.map((placement, i) => (
 					<Box
 						m={1}
-						border='1px solid'
+						border='2px solid'
 						borderColor={getPlacementColor(placement)}
 						p={3}
 						borderRadius='5px'

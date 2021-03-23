@@ -16,12 +16,12 @@ const ChampionDetail: React.FC<ChampionDetailProps> = ({ champion }) => {
 	console.log(championsWithSameTrait);
 
 	return (
-		<Box marginLeft={4} marginTop={2}>
+		<Box p={6} marginLeft={4} marginTop={2} border='1px solid #4A5568'>
 			{convertString('TFT4_', champion.championId, 'TFT4b_') === 'ChoGath' ? (
 				<Image
 					src='https://res.cloudinary.com/dpq5tvqbd/image/upload/v1614128457/champions/TFT4_ChoGath_yw3hag.png'
 					alt='champ-image'
-					border='1px solid'
+					border='2px solid'
 					w='100%'
 					borderColor={getBorderColor(champion.cost - 1)}
 				/>
@@ -33,7 +33,7 @@ const ChampionDetail: React.FC<ChampionDetailProps> = ({ champion }) => {
 						'TFT4b_'
 					)}.png`}
 					alt='champ-image'
-					border='1px solid'
+					border='2px solid'
 					borderColor={getBorderColor(champion.cost - 1)}
 					borderRadius='full'
 				/>

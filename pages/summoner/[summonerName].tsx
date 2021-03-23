@@ -30,6 +30,7 @@ const SummonerPage: React.FC = (
 
 	const { setLoading } = React.useContext(LoadingContext);
 	setLoading(isValidating);
+	error && console.log(error);
 
 	return error ? (
 		<Text>RIP server</Text>
@@ -42,7 +43,7 @@ const SummonerPage: React.FC = (
 				alignItems='center'
 				justifyContent='center'
 				flexDirection='column'
-				width={{ base: '200%', lg: '100%' }}>
+				width={{ base: '100%', md: '100%', lg: '100%' }}>
 				<RankedData rankedData={data} />
 				<MatchHistory data={data} />
 			</Box>

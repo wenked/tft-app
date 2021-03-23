@@ -20,8 +20,6 @@ const summonerName = async (req: NextApiRequest, res: NextApiResponse) => {
 		`${riotApiUrl}/summoner/v1/summoners/by-name/${summoner}?api_key=${riotApiKey}`
 	);
 
-	console.log(fetchSummoner.data, 'aqui');
-
 	if (fetchSummoner.status === 404) {
 		return res.status(200).json({
 			summoner: {},
@@ -40,7 +38,7 @@ const summonerName = async (req: NextApiRequest, res: NextApiResponse) => {
 	);
 
 	const rankedDataResponse = fetchRankedData.data;
-	console.log(rankedDataResponse, 'aqui2');
+
 	if (AMERICAS.includes(region as string)) {
 		regionString = 'americas';
 	} else if (EUROPE.includes(region as string)) {
@@ -54,7 +52,7 @@ const summonerName = async (req: NextApiRequest, res: NextApiResponse) => {
 	);
 
 	const matchListDataResponse = fetchMatchListData.data;
-	console.log(matchListDataResponse, 'aqui3');
+
 	const matchDetailsArray = await Promise.all(
 		matchListDataResponse.map(async (matchId: String) => {
 			const matchDetail = await axios.get(

@@ -7,10 +7,11 @@ body {
 		Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
-body {
+html {
 	min-height: 100vh;
-	min-width: 100vw;
-	border: '1px solid red';
+}
+
+body {
 }
 
 a {

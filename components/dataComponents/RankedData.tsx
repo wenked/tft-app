@@ -23,8 +23,9 @@ const RankedData: React.FC<rankedDataProps> = ({ rankedData }) => {
 			border='1px solid #4A5568'
 			p={6}
 			m={2}
+			marginRight={10}
 			alignItems='center'
-			width={['250%', '250%', 700, 700]}>
+			width={['250%', '250%', 700, 800]}>
 			<Flex direction='column' justifyContent='center'>
 				<Text color='white.400' fontSize='3xl' fontWeight='bold' marginLeft={4}>
 					{rankedData.summoner.name}

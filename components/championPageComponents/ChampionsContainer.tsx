@@ -2,8 +2,9 @@ import { Box, Image, Text } from '@chakra-ui/react';
 import React from 'react';
 import { convertString, getBorderColor } from '../../utils/utilityFunctions';
 import champions from '../../tftdata/champions.json';
-import { championInterface } from '../../types/dataTypes';
+import { championInterface, championsJsonType } from '../../types/dataTypes';
 import { useRouter } from 'next/router';
+import Champion from '../dataComponents/Champion';
 
 interface ChampionsContainerProps {
 	setChampion: React.Dispatch<React.SetStateAction<championInterface>>;
@@ -15,6 +16,7 @@ const ChampionsContainer: React.FC<ChampionsContainerProps> = ({
 	const router = useRouter();
 	return (
 		<Box
+			border='1px solid #4A5568'
 			display='flex'
 			flexWrap='wrap'
 			p={1}
@@ -22,7 +24,7 @@ const ChampionsContainer: React.FC<ChampionsContainerProps> = ({
 				base: '20vw',
 				sm: '20vw',
 			}}>
-			{champions.map((champ) => {
+			{champions.map((champ: championsJsonType) => {
 				return (
 					<Box
 						cursor='pointer'
@@ -35,26 +37,7 @@ const ChampionsContainer: React.FC<ChampionsContainerProps> = ({
 
 							setChampion(champ);
 						}}>
-						{convertString('TFT4_', champ.championId, 'TFT4b_') ===
-						'ChoGath' ? (
-							<Image
-								src='https://res.cloudinary.com/dpq5tvqbd/image/upload/v1614128457/champions/TFT4_ChoGath_yw3hag.png'
-								alt='champ-image'
-								border='1px solid'
-								borderColor={getBorderColor(champ.cost - 1)}
-							/>
-						) : (
-							<Image
-								src={`https://rerollcdn.com/characters/Skin/4.5/${convertString(
-									'TFT4_',
-									champ.championId,
-									'TFT4b_'
-								)}.png`}
-								alt='champ-image'
-								border='1px solid'
-								borderColor={getBorderColor(champ.cost - 1)}
-							/>
-						)}
+						<Champion unitJson={champ} />
 						<Text
 							fontSize='smaller'
 							display={{ base: 'none', lg: 'flex', md: 'flex' }}>

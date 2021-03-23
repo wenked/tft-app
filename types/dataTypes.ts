@@ -13,6 +13,12 @@ export interface summonerRankedData {
 	freshBlood: Boolean;
 	hotStreak: Boolean;
 }
+export interface championsJsonType {
+	name: string;
+	championId: string;
+	cost: number;
+	traits: string[];
+}
 
 export interface leaderboardType {
 	tier: string;

@@ -30,7 +30,7 @@ const NavBar: React.FC = () => {
 								display='block'
 								size='2xl'
 								fontWeight='semibold'
-								_hover={{ fontSize: '3xl' }}>
+								_hover={{ textDecoration: 'underline' }}>
 								Home
 							</Text>
 						</NextLink>
@@ -41,7 +41,7 @@ const NavBar: React.FC = () => {
 								display='block'
 								size='2xl'
 								fontWeight='semibold'
-								_hover={{ fontSize: '3xl' }}>
+								_hover={{ textDecoration: 'underline' }}>
 								Leaderboards
 							</Text>
 						</NextLink>
@@ -52,7 +52,7 @@ const NavBar: React.FC = () => {
 								display='block'
 								size='2xl'
 								fontWeight='semibold'
-								_hover={{ fontSize: '3xl' }}>
+								_hover={{ textDecoration: 'underline' }}>
 								Loaded Dice
 							</Text>
 						</NextLink>
@@ -63,7 +63,7 @@ const NavBar: React.FC = () => {
 								display='block'
 								size='2xl'
 								fontWeight='semibold'
-								_hover={{ fontSize: '3xl' }}>
+								_hover={{ textDecoration: 'underline' }}>
 								Champions
 							</Text>
 						</NextLink>
