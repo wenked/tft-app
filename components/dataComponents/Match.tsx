@@ -22,9 +22,10 @@ const Match: React.FC<MatchProps> = ({ match }) => {
 
 	return (
 		<Box
+			w={[600, 700, 800]}
 			p={4}
 			m={4}
-			border='1px solid white'
+			border='1px solid #4A5568'
 			borderLeftColor={placementColor}
 			borderLeftWidth='thick'>
 			<Text fontSize='3xl' color={placementColor} fontWeight='semibold'>

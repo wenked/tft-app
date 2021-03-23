@@ -19,9 +19,12 @@ const RankedData: React.FC<rankedDataProps> = ({ rankedData }) => {
 		<Box
 			textAlign='left'
 			display='flex'
-			border='1px solid white'
+			justifyContent='center'
+			border='1px solid #4A5568'
 			p={6}
-			width='58%'>
+			m={2}
+			alignItems='center'
+			width={['250%', '250%', 700, 700]}>
 			<Flex direction='column' justifyContent='center'>
 				<Text color='white.400' fontSize='3xl' fontWeight='bold' marginLeft={4}>
 					{rankedData.summoner.name}
@@ -39,7 +42,7 @@ const RankedData: React.FC<rankedDataProps> = ({ rankedData }) => {
 									boxSize='150px'
 								/>
 							</Box>
-							<Box>
+							<Box p={2}>
 								<Text
 									fontWeight='semibold'
 									fontSize='md'
@@ -54,7 +57,7 @@ const RankedData: React.FC<rankedDataProps> = ({ rankedData }) => {
 									Wins: {rankedData.rankedData[0].wins}
 								</Text>
 								<Text fontWeight='semibold' fontSize='md'>
-									Played:
+									Played:{' '}
 									{rankedData.rankedData[0].wins +
 										rankedData.rankedData[0].losses}
 								</Text>

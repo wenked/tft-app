@@ -9,7 +9,7 @@ interface MatchHistoryProps {
 
 const MatchHistory: React.FC<MatchHistoryProps> = ({ data }) => {
 	return (
-		<Box width='60%'>
+		<Box width={['45%', '45%', '30%', '45%']}>
 			{data.playerMatchDetail.map((match, i) => (
 				<Match match={match} key={i} />
 			))}

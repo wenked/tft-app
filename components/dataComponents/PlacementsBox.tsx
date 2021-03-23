@@ -26,13 +26,14 @@ const PlacementsBox: React.FC<placementsBoxProps> = ({ placementsArray }) => {
 						border='1px solid'
 						borderColor={getPlacementColor(placement)}
 						p={3}
+						borderRadius='5px'
 						height='50px'>
 						<Text
 							p='3px'
 							key={i}
 							fontSize='md'
 							fontWeight='semibold'
-							color={getPlacementColor(placement)}>
+							color='gray.400'>
 							{placement}
 						</Text>
 					</Box>

@@ -89,7 +89,7 @@ export const getPlacementColor = (placement: Number) => {
 		case 1:
 			return 'green';
 		case 2:
-			return 'blue';
+			return 'blue.400';
 		case 3:
 			return 'yellow';
 		case 4:

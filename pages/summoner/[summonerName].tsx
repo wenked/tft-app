@@ -19,7 +19,7 @@ const SummonerPage: React.FC = (
 	const router = useRouter();
 	const { summonerName, region } = router.query;
 
-	const { data, isValidating } = useSWR<SummonerData>(
+	const { data, isValidating, error } = useSWR<SummonerData>(
 		`${BASE_URL}/api/${summonerName}?region=${region}`,
 		fetcher,
 		{
@@ -31,7 +31,9 @@ const SummonerPage: React.FC = (
 	const { setLoading } = React.useContext(LoadingContext);
 	setLoading(isValidating);
 
-	return !isValidating ? (
+	return error ? (
+		<Text>RIP server</Text>
+	) : !isValidating ? (
 		data.status === 404 ? (
 			<Text>RIP summoner</Text>
 		) : (
@@ -39,7 +41,8 @@ const SummonerPage: React.FC = (
 				display='flex'
 				alignItems='center'
 				justifyContent='center'
-				flexDirection='column'>
+				flexDirection='column'
+				width={{ base: '200%', lg: '100%' }}>
 				<RankedData rankedData={data} />
 				<MatchHistory data={data} />
 			</Box>
