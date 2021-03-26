@@ -1,8 +1,7 @@
-import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import { SummonerData } from '../../types/dataTypes';
 import { useRouter } from 'next/router';
 import axios from 'axios';
-import useSWR from 'swr';
+
 import { useQuery } from 'react-query';
 import { Box, Text, Spinner } from '@chakra-ui/react';
 import RankedData from '../../components/dataComponents/RankedData';
@@ -27,10 +26,7 @@ const SummonerPage: React.FC = () => {
 
 	const { data, isLoading, error } = useQuery<SummonerData>(
 		['summoner', BASE_URL, summonerName, region],
-		() => fetcher(BASE_URL, summonerName, region),
-		{
-			enabled: summonerName && region ? true : false,
-		}
+		() => fetcher(BASE_URL, summonerName, region)
 	);
 
 	const { setLoading } = React.useContext(LoadingContext);
