@@ -1,7 +1,7 @@
 import { Box, Flex, Text, Image } from '@chakra-ui/react';
 import React from 'react';
 import { SummonerData } from '../../types/dataTypes';
-import { rankColor } from '../../utils/utilityFunctions';
+import { rankColor } from '@utils/utilityFunctions';
 
 import PlacementsBox from './PlacementsBox';
 
@@ -13,7 +13,6 @@ const RankedData: React.FC<rankedDataProps> = ({ rankedData }) => {
 	const placementsArray = rankedData.playerMatchDetail.map((match) => {
 		return match.playerMatchDetails[0].placement;
 	});
-	console.log(placementsArray);
 
 	return (
 		<Box

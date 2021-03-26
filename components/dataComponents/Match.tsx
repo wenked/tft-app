@@ -1,12 +1,7 @@
-import { Box, Text, Flex, Image } from '@chakra-ui/react';
+import { Box, Text } from '@chakra-ui/react';
 import React from 'react';
 import { participantsType } from '../../types/dataTypes';
-import {
-	convertString,
-	getBorderColor,
-	getPlacementColor,
-	getTraitBackgroundColor,
-} from '../../utils/utilityFunctions';
+import { getPlacementColor } from '@utils/utilityFunctions';
 import ChampionsBox from './ChampionsBox';
 import TraitsBox from './TraitsBox';
 
@@ -32,14 +27,14 @@ const Match: React.FC<MatchProps> = ({ match }) => {
 				#{match.playerMatchDetails[0].placement}
 			</Text>
 			<Text color='gray.500'>Date: {convertDate.toLocaleString('br-BR')}</Text>
-			<Text>
+			<Box>
 				<Box>
 					<TraitsBox traits={match.playerMatchDetails[0].traits} />
 				</Box>
 				<Box>
 					<ChampionsBox units={match.playerMatchDetails[0].units} />
 				</Box>
-			</Text>
+			</Box>
 		</Box>
 	);
 };

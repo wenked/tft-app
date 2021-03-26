@@ -1,10 +1,10 @@
-import { Flex, Text, Image } from '@chakra-ui/react';
+import { Flex, Text, Image, Tooltip } from '@chakra-ui/react';
 import React from 'react';
 import { TraitsType } from '../../types/dataTypes';
 import {
 	convertString,
 	getTraitBackgroundColor,
-} from '../../utils/utilityFunctions';
+} from '@utils/utilityFunctions';
 
 interface traitsProps {
 	traits: TraitsType[];
@@ -22,27 +22,25 @@ const TraitsBox: React.FC<traitsProps> = ({ traits }) => {
 		<div>
 			{traits.map((trait, i) => {
 				if (!legendaryTraits.includes(trait.name as string)) {
+					const traitName = convertString('Set4_', trait.name);
 					return (
 						trait.tier_current > 0 && (
-							<Flex display='inline-flex' p={2}>
-								<Text>
+							<Flex display='inline-flex' p={2} key={i}>
+								<Tooltip label={`${trait.num_units} ${traitName}`}>
 									<Image
-										src={`https://rerollcdn.com/icons/${convertString(
-											'Set4_',
-											trait.name
-										)}.png`}
+										src={`https://rerollcdn.com/icons/${traitName}.png`}
 										alt='Logo'
 										backgroundColor={getTraitBackgroundColor(trait.style)}
 										borderRadius='md'
-										width='30px'
+										width='40px'
+										p={1}
 									/>
-									{trait.num_units}
-								</Text>
+								</Tooltip>
 							</Flex>
 						)
 					);
 				}
-				return <></>;
+				return <React.Fragment key={i}></React.Fragment>;
 			})}
 		</div>
 	);

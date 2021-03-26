@@ -6,7 +6,6 @@ import {
 	Input,
 	Box,
 	FormControl,
-	FormLabel,
 	Select,
 } from '@chakra-ui/react';
 import { SearchIcon } from '@chakra-ui/icons';

@@ -1,6 +1,6 @@
 import { Box, Flex, Text } from '@chakra-ui/react';
 import React from 'react';
-import { getPlacementColor } from '../../utils/utilityFunctions';
+import { getPlacementColor } from '@utils/utilityFunctions';
 
 interface placementsBoxProps {
 	placementsArray: Number[];
@@ -22,18 +22,14 @@ const PlacementsBox: React.FC<placementsBoxProps> = ({ placementsArray }) => {
 				</Box>
 				{placementsArray.map((placement, i) => (
 					<Box
+						key={i}
 						m={1}
 						border='2px solid'
 						borderColor={getPlacementColor(placement)}
 						p={3}
 						borderRadius='5px'
 						height='50px'>
-						<Text
-							p='3px'
-							key={i}
-							fontSize='md'
-							fontWeight='semibold'
-							color='gray.400'>
+						<Text p='3px' fontSize='md' fontWeight='semibold' color='gray.400'>
 							{placement}
 						</Text>
 					</Box>

@@ -1,8 +1,9 @@
 import { Box, Divider, Image, Text } from '@chakra-ui/react';
 import React from 'react';
-import { championInterface } from '../../types/dataTypes';
-import { convertString, getBorderColor } from '../../utils/utilityFunctions';
-import champions from '../../tftdata/champions.json';
+import { championInterface, championsJsonType } from '../../types/dataTypes';
+import { convertString, getBorderColor } from '@utils/utilityFunctions';
+import champions from '@tftdata/champions.json';
+import Champion from '@components/dataComponents/Champion';
 
 interface ChampionDetailProps {
 	champion: championInterface;
@@ -64,18 +65,11 @@ const ChampionDetail: React.FC<ChampionDetailProps> = ({ champion }) => {
 							width='30px'
 							p={1}
 						/>
-						<Box>
-							{champs.map((champ) => (
-								<Image
-									src={`https://rerollcdn.com/characters/Skin/4.5/${convertString(
-										'TFT4_',
-										champ.championId,
-										'TFT4b_'
-									)}.png`}
-									w='50px'
-									display='inline-flex'
-									m={1}
-								/>
+						<Box display='inline-flex'>
+							{champs.map((champ: championsJsonType, i) => (
+								<Box p={1}>
+									<Champion unitJson={champ} key={i} />
+								</Box>
 							))}{' '}
 						</Box>
 					</Box>

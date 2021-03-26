@@ -1,10 +1,9 @@
-import { Box, Image, Text } from '@chakra-ui/react';
+import { Box, Text } from '@chakra-ui/react';
 import React from 'react';
-import { convertString, getBorderColor } from '../../utils/utilityFunctions';
-import champions from '../../tftdata/champions.json';
+import champions from '@tftdata/champions.json';
 import { championInterface, championsJsonType } from '../../types/dataTypes';
 import { useRouter } from 'next/router';
-import Champion from '../dataComponents/Champion';
+import Champion from '@components/dataComponents/Champion';
 
 interface ChampionsContainerProps {
 	setChampion: React.Dispatch<React.SetStateAction<championInterface>>;

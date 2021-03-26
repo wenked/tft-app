@@ -78,7 +78,7 @@ export const getTraitBackgroundColor = (traitTier: Number) => {
 		case 2:
 			return 'gray.500';
 		case 3:
-			return 'yellow.300';
+			return 'yellow.500';
 		case 4:
 			return 'teal.100';
 	}
